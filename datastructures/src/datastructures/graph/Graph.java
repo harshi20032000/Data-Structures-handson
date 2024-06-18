@@ -17,4 +17,14 @@ public class Graph {
 		}
 		return false;
 	}
+
+	public boolean addEdge(String string, String string2) {
+		if(adjList.containsKey(string) && adjList.containsKey(string2)) {
+			adjList.get(string2).add(string);
+			adjList.get(string).add(string2);
+			return true;
+		}
+		System.out.println("any one of vertex is not present!");
+		return false;
+	}
 }
