@@ -132,23 +132,28 @@ public class LinkedList {
 		return true;
 	}
 
-//	public boolean set(int index, int value) {
-//		if (index < 0 || index > length)
-//			return false;
-//		if (index == 0) {
-//			prepend(value);
-//			return true;
-//		}
-//		if (index == length) {
-//			append(value);
-//			return true;
-//		}
-//		Node newNode = new Node(value);
-//		Node pre = head;
-//		for(int i=0; i<index-1; i++) {
-//			
-//		}
-//		
-//	}
+
+
+	public boolean insert(int index, int value) {
+		if (index < 0 || index > length)
+			return false;
+		if (index == 0) {
+			prepend(value);
+			return true;
+		}
+		if (index == length) {
+			append(value);
+			return true;
+		}
+		Node newNode = new Node(value);
+		Node prev = get(index-1);
+		
+		
+		newNode.next=prev.next;
+		prev.next=newNode;
+		length++;
+		return true;
+		
+	}
 
 }
