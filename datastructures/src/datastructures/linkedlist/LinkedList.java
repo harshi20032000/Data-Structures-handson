@@ -125,4 +125,30 @@ public class LinkedList {
 		return temp;
 	}
 
+	public boolean set(int index, int value) {
+		Node presentNode = get(index);
+		if(presentNode==null) return false;
+		presentNode.value=value;
+		return true;
+	}
+
+//	public boolean set(int index, int value) {
+//		if (index < 0 || index > length)
+//			return false;
+//		if (index == 0) {
+//			prepend(value);
+//			return true;
+//		}
+//		if (index == length) {
+//			append(value);
+//			return true;
+//		}
+//		Node newNode = new Node(value);
+//		Node pre = head;
+//		for(int i=0; i<index-1; i++) {
+//			
+//		}
+//		
+//	}
+
 }
