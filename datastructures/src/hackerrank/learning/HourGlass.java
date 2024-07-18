@@ -33,6 +33,32 @@ public class HourGlass {
 		return maxHourGlassSum;
 
 	}
+	
+	//Chat gpt implementation is less complex and easy to scale.
+	public static int hourglassSumChatgpt(List<List<Integer>> arr) {
+	    // Constants for hourglass dimensions
+	    final int HOURGLASS_ROWS = 3;
+	    final int HOURGLASS_COLS = 3;
+
+	    int maxHourGlassSum = Integer.MIN_VALUE;
+
+	    // Loop over each possible starting point of an hourglass in the 6x6 array
+	    for (int i = 0; i <= 6 - HOURGLASS_ROWS; i++) {
+	        for (int j = 0; j <= 6 - HOURGLASS_COLS; j++) {
+	            // Calculate the sum of the current hourglass
+	            int sum = arr.get(i).get(j) + arr.get(i).get(j + 1) + arr.get(i).get(j + 2)   // top row
+	                    + arr.get(i + 1).get(j + 1)                                          // middle element
+	                    + arr.get(i + 2).get(j) + arr.get(i + 2).get(j + 1) + arr.get(i + 2).get(j + 2); // bottom row
+
+	            // Update maxHourGlassSum if the current sum is greater
+	            if (sum > maxHourGlassSum) {
+	                maxHourGlassSum = sum;
+	            }
+	        }
+	    }
+
+	    return maxHourGlassSum;
+	}
 
 	public static void main(String[] args) throws IOException {
 
