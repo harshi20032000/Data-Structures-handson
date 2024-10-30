@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stack Visualization</title>
+</head>
+<body>
+    <h2>Stack Visualization</h2>
+    
+    <form action="/stack/push" method="post">
+        <input type="number" name="value" placeholder="Enter value" required>
+        <button type="submit">Push</button>
+    </form>
+    
+    <form action="/stack/pop" method="post" style="margin-top: 10px;">
+        <button type="submit">Pop</button>
+    </form>
+
+    <h3>Stack Elements:</h3>
+    <ul>
+        <li th:each="element : ${stackElements}" th:text="${element}"></li>
+    </ul>
+</body>
+</html>

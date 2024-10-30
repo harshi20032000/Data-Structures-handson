@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;c&apos; in &apos;datastructures.hashtable.FirstNonRepeatingChar.firstNonRepeatingChar(...)&apos; to &apos;eachChar&apos;&#x0D;&#x0A;- Original project: &apos;datastructures&apos;&#x0D;&#x0A;- Original element: &apos;datastructures.hashtable.FirstNonRepeatingChar.firstNonRepeatingChar(String).c&apos;&#x0D;&#x0A;- Renamed element: &apos;c&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;c&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;datastructures.hashtable{FirstNonRepeatingChar.java[FirstNonRepeatingChar~firstNonRepeatingChar~QString;@c!823!846!828!828!C!0!false" name="eachChar" references="true" stamp="1718762390832" version="1.0"/>
+</session>
