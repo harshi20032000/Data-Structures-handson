@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indiavisualisedsa.ds_visualiser.models.Stack;
 
@@ -14,51 +16,44 @@ import com.indiavisualisedsa.ds_visualiser.models.Stack;
 @SessionAttributes("stack")
 public class StackController {
 
-    @ModelAttribute("stack")
-    public Stack initializeStack() {
-        return null; // Start with no stack initialized
-    }
+	@ModelAttribute("stack")
+	public Stack initializeStack() {
+		return null;
+	}
 
-    @GetMapping("/stack")
-    public String viewStack(@ModelAttribute("stack") Stack stack, Model model) {
-        if (stack == null) {
-            return "redirect:/stack/initializePage";
-        }
-        model.addAttribute("stackElements", stack.getElements());
-        model.addAttribute("stackSize", stack.size());
-        return "stack";
-    }
+	 @GetMapping("/stack")
+	    public String viewStack(@ModelAttribute("stack") Stack stack, Model model) {
+	        model.addAttribute("stackElements", stack != null ? stack.getElements() : new int[0]);
+	        model.addAttribute("stackSize", stack != null ? stack.size() : 0);
+	        model.addAttribute("spPointer", stack != null ? stack.getSP() : -1);
+	        return "stack";
+	    }
 
-    @GetMapping("/stack/initializePage")
-    public String initializePage() {
-        return "initializePage"; // Page to enter stack size
-    }
+	@GetMapping("/stack/initializePage")
+	public String initializePage() {
+		return "initializePage"; // Page to enter stack size
+	}
 
-    @PostMapping("/stack/initialize")
-    public String initializeStack(@RequestParam("size") int size, Model model) {
-        model.addAttribute("stack", new Stack(size));
-        return "redirect:/stack";
-    }
+	@PostMapping("/stack/initialize")
+	public String initializeStack(@RequestParam("size") int size, Model model, SessionStatus status) {
+		model.addAttribute("stack", new Stack(size));
+		return "redirect:/stack";
+	}
 
-    @PostMapping("/stack/push")
-    public String push(@RequestParam("value") Integer value, @ModelAttribute("stack") Stack stack, Model model) {
-        if (stack.size() == stack.getElements().length) {
-            model.addAttribute("message", "Stack overflow - Unable to push!");
-        } else {
-            stack.push(value);
-            model.addAttribute("message", value + " pushed to stack");
-        }
-        return "redirect:/stack";
-    }
+	@PostMapping("/stack/push")
+	public String push(@RequestParam("value") Integer value, @ModelAttribute("stack") Stack stack, RedirectAttributes redirectAttributes) {
 
-    @PostMapping("/stack/pop")
-    public String pop(@ModelAttribute("stack") Stack stack, Model model) {
-        if (stack.size() == 0) {
-            model.addAttribute("message", "Stack underflow - Unable to pop!");
-        } else {
-            int poppedValue = stack.pop();
-            model.addAttribute("message", "Element popped: " + poppedValue);
-        }
-        return "redirect:/stack";
-    }
+		String message = stack.push(value);
+		redirectAttributes.addFlashAttribute("message", message);
+		redirectAttributes.addFlashAttribute("spPointer", stack.getSP());
+		return "redirect:/stack";
+	}
+
+	@PostMapping("/stack/pop")
+	public String pop(@ModelAttribute("stack") Stack stack, RedirectAttributes redirectAttributes) {
+		String message = stack.pop();
+		redirectAttributes.addFlashAttribute("message", message);
+		redirectAttributes.addFlashAttribute("spPointer", stack.getSP());
+		return "redirect:/stack";
+	}
 }

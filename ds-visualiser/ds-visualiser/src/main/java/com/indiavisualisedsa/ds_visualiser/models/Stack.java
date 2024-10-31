@@ -12,17 +12,21 @@ public class Stack {
 	        sp = -1; 
 	    }
 
-	    public void push(int item) {
+	    public String push(int item) {
 	        if (sp == n - 1) {
-	            return; 
+	            return "Stack overflow";
 	        }
-	        s[++sp] = item; 
+	        s[++sp] = item;
+	        return "Item pushed: " + item;
 	    }
 
-	    public int pop() {
-	        int v = s[sp]; 
+	    public String pop() {
+	        if (sp == -1) {
+	            return "Stack underflow";
+	        }
+	        int v = s[sp];
 	        s[sp--] = 0;
-	        return v;
+	        return "Item popped: " + v;
 	    }
 
 	    public int[] getElements() {
@@ -31,5 +35,9 @@ public class Stack {
 
 	    public int size() {
 	        return sp + 1; 
+	    }
+	    
+	    public int getSP() {
+	        return sp;
 	    }
 }

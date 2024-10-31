@@ -8,28 +8,38 @@
     <div class="container">
         <h2 class="text-center">Stack Visualization</h2>
 
+        <!-- Push Form -->
         <form action="/stack/push" method="post" class="form-inline mt-4 justify-content-center">
             <input type="number" name="value" class="form-control mr-2" placeholder="Enter value" required>
             <button type="submit" class="btn btn-success">Push</button>
         </form>
 
+        <!-- Pop Form -->
         <form action="/stack/pop" method="post" class="form-inline mt-2 justify-content-center">
             <button type="submit" class="btn btn-danger">Pop</button>
         </form>
 
-        <!-- Display message -->
+        <!-- Message Display -->
         <div th:if="${message}" class="alert alert-info text-center mt-3">
             <p th:text="${message}"></p>
         </div>
 
+        <!-- Stack Display with SP Pointer -->
         <div class="stack-display mt-4">
             <h4 class="text-center">Stack Elements:</h4>
             <ul class="list-unstyled">
-                <li th:each="element, iterStat : ${stackElements}" th:text="${element}" 
-                    th:classappend="${iterStat.index == stackSize - 1 ? 'bg-primary text-white' : 'bg-light'}">
+                <li th:each="element, iterStat : ${stackElements}" 
+                    th:classappend="${iterStat.index == spPointer ? 'bg-primary text-white' : 'bg-light'}">
+                    <span th:text="${element}"></span>
+                    <!-- Display SP Pointer or Null -->
+                    <span th:if="${iterStat.index == spPointer}" class="float-right">SP &#x2191;</span>
                 </li>
             </ul>
-            <p th:if="${stackSize == 0}" class="text-center text-muted">The stack is empty.</p>
+
+            <!-- SP Pointer as Null when Stack is Empty -->
+            <p th:if="${stackSize == 0}" class="text-center text-muted mt-2">
+                The stack is empty. <span class="text-danger">SP → Null</span>
+            </p>
         </div>
     </div>
 
