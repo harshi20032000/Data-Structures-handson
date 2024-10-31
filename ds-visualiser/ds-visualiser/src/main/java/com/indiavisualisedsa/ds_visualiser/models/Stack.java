@@ -14,7 +14,7 @@ public class Stack {
 
 	    public String push(int item) {
 	        if (sp == n - 1) {
-	            return "Stack overflow";
+	            return "Stack OverFlow";
 	        }
 	        s[++sp] = item;
 	        return "Item pushed: " + item;
@@ -22,7 +22,7 @@ public class Stack {
 
 	    public String pop() {
 	        if (sp == -1) {
-	            return "Stack underflow";
+	            return "Stack UnderFlow";
 	        }
 	        int v = s[sp];
 	        s[sp--] = 0;
