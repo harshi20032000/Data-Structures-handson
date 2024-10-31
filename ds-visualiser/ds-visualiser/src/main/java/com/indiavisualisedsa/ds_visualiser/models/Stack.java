@@ -1,27 +1,35 @@
 package com.indiavisualisedsa.ds_visualiser.models;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Stack {
 
-public class Stack<T> {
-    private List<T> elements = new ArrayList<>();
+	    private int[] s; 
+	    private int sp;  
+	    private int n;   
 
-    public void push(T value) {
-        elements.add(value);
-    }
+	    public Stack(int size) {
+	        n = size;
+	        s = new int[n];
+	        sp = -1; 
+	    }
 
-    public T pop() {
-        if (!elements.isEmpty()) {
-            return elements.remove(elements.size() - 1);
-        }
-        return null;
-    }
+	    public void push(int item) {
+	        if (sp == n - 1) {
+	            return; 
+	        }
+	        s[++sp] = item; 
+	    }
 
-    public List<T> getElements() {
-        return elements;
-    }
+	    public int pop() {
+	        int v = s[sp]; 
+	        s[sp--] = 0;
+	        return v;
+	    }
 
-    public boolean isEmpty() {
-        return elements.isEmpty();
-    }
+	    public int[] getElements() {
+	        return s;
+	    }
+
+	    public int size() {
+	        return sp + 1; 
+	    }
 }
