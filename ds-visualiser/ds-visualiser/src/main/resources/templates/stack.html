@@ -12,7 +12,6 @@
 			margin-top: 30px;
 		}
 
-		/* Stack item styled as a thick disk */
 		.stack-item {
 			width: 200px;
 			height: 30px;
@@ -28,7 +27,6 @@
 			position: relative;
 		}
 
-		/* SP pointer styles */
 		.sp-pointer {
 			position: absolute;
 			right: -30px;
@@ -37,7 +35,6 @@
 			font-size: 1.1em;
 		}
 
-		/* Stack animation */
 		.stack-item.animate-push {
 			animation: push 0.4s ease-out;
 		}
@@ -51,7 +48,6 @@
 				transform: translateY(-50px);
 				opacity: 0;
 			}
-
 			100% {
 				transform: translateY(0);
 				opacity: 1;
@@ -63,7 +59,6 @@
 				transform: translateY(0);
 				opacity: 1;
 			}
-
 			100% {
 				transform: translateY(50px);
 				opacity: 0;
@@ -97,14 +92,13 @@
 			<h4 class="text-center">Stack Elements:</h4>
 			<ul class="list-unstyled">
 				<li th:each="element, iterStat : ${stackElements}"
+					th:class="'stack-item animate-push'"
 					th:classappend="${iterStat.index == spPointer ? 'bg-primary text-white' : 'bg-light'}">
 					<span th:text="${element}"></span>
-					<!-- Display SP Pointer or Null -->
-					<span th:if="${iterStat.index == spPointer}" class="float-right"> &#x2190 SP</span>
+					<span th:if="${iterStat.index == spPointer}" class="sp-pointer">&#x2190 SP</span>
 				</li>
 			</ul>
 
-			<!-- SP Pointer as Null when Stack is Empty -->
 			<p th:if="${stackSize == 0}" class="text-center text-muted mt-2">
 				The stack is empty. <span class="text-danger">SP → Null</span>
 			</p>
@@ -113,13 +107,22 @@
 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script>
-		// Optional: Add/remove animations on page load for pushed/popped elements
 		document.addEventListener("DOMContentLoaded", function () {
-			const stackItems = document.querySelectorAll('.stack-item');
+			const pushForm = document.querySelector('form[action="/stack/push"]');
+			const popForm = document.querySelector('form[action="/stack/pop"]');
 
-			stackItems.forEach((item, index) => {
-				// Adding class to animate the push on load for each item
-				setTimeout(() => item.classList.add('animate-push'), 100 * index);
+			// Add animation class dynamically on push and pop
+			pushForm.addEventListener("submit", () => {
+				setTimeout(() => {
+					document.querySelectorAll('.stack-item')[0].classList.add("animate-push");
+				}, 100);
+			});
+
+			popForm.addEventListener("submit", () => {
+				const stackItems = document.querySelectorAll('.stack-item');
+				if (stackItems.length > 0) {
+					stackItems[0].classList.add("animate-pop");
+				}
 			});
 		});
 	</script>
