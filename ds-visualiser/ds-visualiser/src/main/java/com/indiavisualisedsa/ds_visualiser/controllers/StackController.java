@@ -1,5 +1,10 @@
 package com.indiavisualisedsa.ds_visualiser.controllers;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +26,14 @@ public class StackController {
 		return null;
 	}
 
-	 @GetMapping("/stack")
-	    public String viewStack(@ModelAttribute("stack") Stack stack, Model model) {
-	        model.addAttribute("stackElements", stack != null ? stack.getElements() : new int[0]);
-	        model.addAttribute("stackSize", stack != null ? stack.size() : 0);
-	        model.addAttribute("spPointer", stack != null ? stack.getSP() : -1);
-	        return "stack";
-	    }
+	@GetMapping("/stack")
+	public String viewStack(@ModelAttribute("stack") Stack stack, Model model) {
+		int[] elements = stack != null ? stack.getElements() : new int[0];
+		model.addAttribute("stackElements", elements);
+		model.addAttribute("stackSize", stack != null ? stack.size() : 0);
+		model.addAttribute("spPointer", stack != null ? stack.getSP() : -1);
+		return "stack";
+	}
 
 	@GetMapping("/stack/initializePage")
 	public String initializePage() {
@@ -41,7 +47,8 @@ public class StackController {
 	}
 
 	@PostMapping("/stack/push")
-	public String push(@RequestParam("value") Integer value, @ModelAttribute("stack") Stack stack, RedirectAttributes redirectAttributes) {
+	public String push(@RequestParam("value") Integer value, @ModelAttribute("stack") Stack stack,
+			RedirectAttributes redirectAttributes) {
 
 		String message = stack.push(value);
 		redirectAttributes.addFlashAttribute("message", message);
