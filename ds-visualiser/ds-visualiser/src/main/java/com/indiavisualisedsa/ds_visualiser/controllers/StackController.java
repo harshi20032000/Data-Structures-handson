@@ -17,12 +17,11 @@ import com.indiavisualisedsa.ds_visualiser.models.Stack;
 @RequestMapping("/stack")
 @SessionAttributes("stack")
 public class StackController {
-	
+
 	@GetMapping("/initializePage")
 	public String initializePage() {
-		return "stack-init"; // Page to enter stack size
+		return "stack-init";
 	}
-	
 
 	@PostMapping("/initialize")
 	public String initializeStack(@RequestParam("size") int size, Model model) {
@@ -36,7 +35,7 @@ public class StackController {
 		model.addAttribute("stackElements", elements);
 		model.addAttribute("stackSize", stack != null ? stack.size() : 0);
 		model.addAttribute("spPointer", stack != null ? stack.getSP() : -1);
-		return "stack";
+		return "stackDisplay";
 	}
 
 	@PostMapping("/push")
