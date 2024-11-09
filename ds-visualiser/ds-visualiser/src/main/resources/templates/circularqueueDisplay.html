@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CircularQueue Visualization</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .circularqueue-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .circularqueue-display {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .circularqueue-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+        }
+
+        .pointer-column {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100px;
+        }
+
+        .pointer {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: red;
+            margin: 0 10px;
+        }
+
+        .circularqueue-elements {
+            display: flex;
+            align-items: center;
+        }
+
+        .circularqueue-item {
+            width: 80px;
+            height: 30px;
+            background-color: #6c757d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            margin: 3px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .circularqueue-index {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .circularqueue-index-item {
+            width: 80px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3px;
+            font-weight: bold;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .alert-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center">CircularQueue Visualization</h2>
+
+        <!-- Insert and Delete Forms -->
+        <form action="/circularqueue/insert" method="post" class="form-inline mt-4 justify-content-center">
+            <input type="number" name="item" class="form-control mr-2" placeholder="Enter value" required>
+            <button type="submit" class="btn btn-success">Insert</button>
+        </form>
+        <form action="/circularqueue/delete" method="post" class="form-inline mt-2 justify-content-center">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+
+        <!-- Display Message for Overflow or Underflow -->
+        <div th:if="${message}" class="alert alert-info text-center mt-3">
+            <p th:text="${message}"></p>
+        </div>
+
+        <div class="circularqueue-wrapper">
+            <!-- CircularQueue Display -->
+            <div class="circularqueue-display">
+                <div class="text-center">
+                    <h4>CircularQueue Values</h4>
+                </div>
+                <div class="text-center ml-4">
+                    <h4>Index</h4>
+                </div>
+            </div>
+
+            <div class="circularqueue-container">
+                <!-- Pointer Column (Front and Rear) -->
+                <div class="pointer-column">
+                    <div th:if="${frontPointer >= 0}" class="pointer">Front &#x2192;</div>
+                    <div th:if="${rearPointer >= 0}" class="pointer">Rear &#x2192;</div>
+                </div>
+
+                <!-- CircularQueue Elements Column -->
+                <div class="circularqueue-elements">
+                    <div th:each="element, iterStat : ${elements}" class="circularqueue-item" th:text="${element}"></div>
+                </div>
+
+                <!-- CircularQueue Index Column -->
+                <div class="circularqueue-index">
+                    <div th:each="element, iterStat : ${elements}" class="circularqueue-index-item" th:text="${iterStat.index}"></div>
+                </div>
+            </div>
+        </div>
+
+        <p th:if="${elements.length == 0}" class="text-center text-muted mt-2">
+            The circularqueue is empty. <span class="text-danger">Front → Null</span>
+        </p>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

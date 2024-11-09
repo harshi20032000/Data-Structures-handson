@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indiavisualisedsa.ds_visualiser.models.Queue;
-import com.indiavisualisedsa.ds_visualiser.models.Stack;
-
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/queue")
