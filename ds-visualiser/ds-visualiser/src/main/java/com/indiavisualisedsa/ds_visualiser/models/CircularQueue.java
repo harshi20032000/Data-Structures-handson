@@ -2,8 +2,7 @@ package com.indiavisualisedsa.ds_visualiser.models;
 
 /**
  * point1: here the rear pointer resets to 0 after reaching capacity point2:
- * Overflow condition f==0 and r==size-1 or f==r+1
- * Underflow condition 
+ * Overflow condition f==0 and r==size-1 or f==r+1 Underflow condition
  */
 public class CircularQueue {
 	private int[] cq;
@@ -50,19 +49,19 @@ public class CircularQueue {
 				f = f + 1;
 			}
 		}
-		return temp +"is deleted";
+		return temp + "is deleted";
 	}
-	
+
 	public int[] getElements() {
-        return cq;
-    }
-	
-	public int getfrontPointer() {
-        return f;
-    }
-	
-	public int getrearPointer() {
-        return r;
-    }
+		return cq;
+	}
+
+	public int getFrontPointer() {
+		return f;
+	}
+
+	public int getRearPointer() {
+		return r;
+	}
 
 }

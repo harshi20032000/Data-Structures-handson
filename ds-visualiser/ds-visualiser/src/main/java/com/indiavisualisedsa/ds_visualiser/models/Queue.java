@@ -51,11 +51,11 @@ public class Queue {
         return q;
     }
 	
-	public int getfrontPointer() {
+	public int getFrontPointer() {
         return f;
     }
 	
-	public int getrearPointer() {
+	public int getRearPointer() {
         return r;
     }
 

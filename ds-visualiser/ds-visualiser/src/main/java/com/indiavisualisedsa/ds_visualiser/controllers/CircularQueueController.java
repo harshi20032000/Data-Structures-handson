@@ -33,8 +33,8 @@ public class CircularQueueController {
 	public String viewQueue(@ModelAttribute("circularqueue") CircularQueue circularqueue, Model model) {
 		int[] elements = circularqueue != null ? circularqueue.getElements() : new int[0];
 		model.addAttribute("elements", elements);
-		model.addAttribute("frontPointer", circularqueue.getfrontPointer());
-		model.addAttribute("rearPointer", circularqueue.getrearPointer());
+		model.addAttribute("frontPointer", circularqueue.getFrontPointer());
+		model.addAttribute("rearPointer", circularqueue.getRearPointer());
 		return "circularqueueDisplay";
 	}
 
@@ -45,8 +45,8 @@ public class CircularQueueController {
 		String message = circularqueue.insert(item);
 		redirectAttributes.addFlashAttribute("message", message);
 		redirectAttributes.addAttribute("elements", circularqueue.getElements());
-		redirectAttributes.addAttribute("frontPointer", circularqueue.getfrontPointer());
-		redirectAttributes.addAttribute("rearPointer", circularqueue.getrearPointer());
+		redirectAttributes.addAttribute("frontPointer", circularqueue.getFrontPointer());
+		redirectAttributes.addAttribute("rearPointer", circularqueue.getRearPointer());
 		return "redirect:/circularqueue/view";
 	}
 
@@ -55,8 +55,8 @@ public class CircularQueueController {
 		String message = circularqueue.delete();
 		redirectAttributes.addFlashAttribute("message", message);
 		redirectAttributes.addAttribute("elements", circularqueue.getElements());
-		redirectAttributes.addAttribute("frontPointer", circularqueue.getfrontPointer());
-		redirectAttributes.addAttribute("rearPointer", circularqueue.getrearPointer());
+		redirectAttributes.addAttribute("frontPointer", circularqueue.getFrontPointer());
+		redirectAttributes.addAttribute("rearPointer", circularqueue.getRearPointer());
 		return "redirect:/circularqueue/view";
 	}
 

@@ -32,8 +32,8 @@ public class QueueController {
 	public String viewQueue(@ModelAttribute("queue") Queue queue, Model model) {
 		int[] elements = queue != null ? queue.getElements() : new int[0];
 		model.addAttribute("elements", elements);
-		model.addAttribute("frontPointer", queue.getfrontPointer());
-		model.addAttribute("rearPointer", queue.getrearPointer());
+		model.addAttribute("frontPointer", queue.getFrontPointer());
+		model.addAttribute("rearPointer", queue.getRearPointer());
 		return "queueDisplay";
 	}
 
@@ -44,8 +44,8 @@ public class QueueController {
 		String message = queue.insert(item);
 		redirectAttributes.addFlashAttribute("message", message);
 		redirectAttributes.addAttribute("elements", queue.getElements());
-		redirectAttributes.addAttribute("frontPointer", queue.getfrontPointer());
-		redirectAttributes.addAttribute("rearPointer", queue.getrearPointer());
+		redirectAttributes.addAttribute("frontPointer", queue.getFrontPointer());
+		redirectAttributes.addAttribute("rearPointer", queue.getRearPointer());
 		return "redirect:/queue/view";
 	}
 
@@ -54,8 +54,8 @@ public class QueueController {
 		String message = queue.delete();
 		redirectAttributes.addFlashAttribute("message", message);
 		redirectAttributes.addAttribute("elements", queue.getElements());
-		redirectAttributes.addAttribute("frontPointer", queue.getfrontPointer());
-		redirectAttributes.addAttribute("rearPointer", queue.getrearPointer());
+		redirectAttributes.addAttribute("frontPointer", queue.getFrontPointer());
+		redirectAttributes.addAttribute("rearPointer", queue.getRearPointer());
 		return "redirect:/queue/view";
 	}
 }
