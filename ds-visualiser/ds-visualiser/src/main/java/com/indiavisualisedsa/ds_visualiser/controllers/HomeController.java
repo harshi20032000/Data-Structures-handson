@@ -11,7 +11,10 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String homePage(Model model) {
-		Map<String, String> dataStructures = Map.of("Stack", "/stack/initializePage", "Queue", "/queue/initializePage", "CircularQueue", "/circularqueue/initializePage"
+		Map<String, String> dataStructures = Map.of("Stack", "/stack/initializePage",
+													"Queue", "/queue/initializePage",
+													"CircularQueue", "/circularqueue/initializePage",
+													"Deque", "/deque/initializePage"
 		);
 		model.addAttribute("dataStructures", dataStructures);
 		return "index";

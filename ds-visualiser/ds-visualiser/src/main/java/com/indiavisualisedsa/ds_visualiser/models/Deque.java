@@ -5,14 +5,14 @@ public class Deque {
 	private int[] dq;
 	private int f, r, size;
 	
-	Deque(int n){
+	public Deque(int n){
 		size = n;
 		dq = new int[size];
 		f=-1;
 		r=-1;
 	}
 	
-	String insertFront(int item) {
+	public String insertFront(int item) {
 		if(f==0)
 			return "Deque Over Flows";
 		else if(f==-1 && r==-1) {
@@ -21,11 +21,11 @@ public class Deque {
 		else
 			f=f-1;
 		dq[f]=item;
-		return item +"is inserted";
+		return item +" is inserted";
 	}
 	
-	String insertRear(int item) {
-		if(r==size)
+	public String insertRear(int item) {
+		if(r==size-1)
 			return "Deque Over Flows";
 		else if(f==-1 && r==-1) {
 			f=0; r=0;
@@ -33,13 +33,14 @@ public class Deque {
 		else
 			r=r+1;
 		dq[r]=item;
-		return item+"is inserted";
+		return item+" is inserted";
 	}
 	
-	String deleteFront() {
+	public String deleteFront() {
 		if(f==-1 && r==-1)
 			return "Deque Under Flows";
 		int temp=dq[f];
+		dq[f]=0;
 		
 		if(f==r)
 		{
@@ -48,13 +49,14 @@ public class Deque {
 		}
 		else
 			f=f+1;
-		return temp +"is removed";
+		return temp +" is removed";
 	}
 	
-	String deleteRear() {
+	public String deleteRear() {
 		if(f==-1 && r==-1)
 			return "Deque Under Flows";
 		int temp=dq[r];
+		dq[r]=0;
 		
 		if(f==r)
 		{
@@ -63,18 +65,18 @@ public class Deque {
 		}
 		else
 			r=r-1;
-		return temp +"is removed";
+		return temp +" is removed";
 	}
 	
 	public int[] getElements() {
 		return dq;
 	}
 
-	public int getfrontPointer() {
+	public int getFrontPointer() {
 		return f;
 	}
 
-	public int getrearPointer() {
+	public int getRearPointer() {
 		return r;
 	}
 	

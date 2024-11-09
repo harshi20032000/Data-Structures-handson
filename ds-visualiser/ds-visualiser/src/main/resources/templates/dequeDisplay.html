@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Deque Visualization</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .deque-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .deque-display {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .deque-elements {
+            display: flex;
+            gap: 10px;
+        }
+        .deque-item {
+            width: 80px;
+            height: 30px;
+            background-color: #6c757d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .pointer {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Deque Visualization</h2>
+
+        <!-- Insertions and Deletions -->
+        <div class="text-center mt-4">
+            <form action="/deque/insertFront" method="post" class="d-inline">
+                <input type="number" name="item" placeholder="Enter value" required>
+                <button type="submit" class="btn btn-success">Insert Front</button>
+            </form>
+            <form action="/deque/insertRear" method="post" class="d-inline ml-3">
+                <input type="number" name="item" placeholder="Enter value" required>
+                <button type="submit" class="btn btn-primary">Insert Rear</button>
+            </form>
+            <form action="/deque/deleteFront" method="post" class="d-inline ml-3">
+                <button type="submit" class="btn btn-danger">Delete Front</button>
+            </form>
+            <form action="/deque/deleteRear" method="post" class="d-inline ml-3">
+                <button type="submit" class="btn btn-warning">Delete Rear</button>
+            </form>
+        </div>
+
+        <!-- Message Display -->
+        <div th:if="${message}" class="alert alert-info text-center mt-3">
+            <p th:text="${message}"></p>
+        </div>
+
+        <!-- Deque Display -->
+        <div class="deque-wrapper mt-5">
+            <div class="deque-display">
+                <div class="deque-elements">
+                    <span th:each="element, iterStat : ${elements}"
+                          class="deque-item" th:text="${element}"></span>
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <p th:if="${frontPointer >= 0}" class="pointer">Front Pointer → <span th:text="${frontPointer}"></span></p>
+                <p th:if="${rearPointer >= 0}" class="pointer">Rear Pointer → <span th:text="${rearPointer}"></span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
