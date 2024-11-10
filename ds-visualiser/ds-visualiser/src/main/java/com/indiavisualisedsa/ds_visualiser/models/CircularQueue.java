@@ -16,7 +16,7 @@ public class CircularQueue {
 	}
 
 	public String insert(int item) {
-		if (f == 0 && r == size - 1 || f == r + 1) {
+		if ((f == 0 && r == size - 1) || (f == r + 1)) {
 			return "Circular Queue OverFlow";
 		} else {
 			if (f == -1 && r == -1) {
@@ -24,7 +24,7 @@ public class CircularQueue {
 				r = 0;
 			} else {
 				if (r == size - 1)
-					r = 1;
+					r = 0;
 				else
 					r = r + 1;
 			}
