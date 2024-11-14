@@ -4,49 +4,67 @@ public class SinglyLinkedList {
 
 	int data;
 	SinglyLinkedList link;
-	
-	SinglyLinkedList(int item){
-		data=item;
-		link=null;
+
+	SinglyLinkedList(int item) {
+		data = item;
+		link = null;
 	}
-	
-	void insertBeg(SinglyLinkedList start, int value) {
+
+	String insertBeg(SinglyLinkedList start, int value) {
 		SinglyLinkedList newNode = new SinglyLinkedList(value);
-		newNode.link=start;
-		
+		newNode.link = start;
+		return value +" is added.";
 	}
-	
-	void insertMid(SinglyLinkedList start, int value, int index) {
+
+	String insertMid(SinglyLinkedList start, int value, int index) {
 		SinglyLinkedList newNode = new SinglyLinkedList(value);
 		SinglyLinkedList ptr = start;
-		int count=1;
-		while(count<index) {
-			ptr=ptr.link;
+		int count = 1;
+		while (count < index) {
+			ptr = ptr.link;
 			count++;
 		}
-		newNode.link=ptr.link;
-		ptr.link=newNode;
+		newNode.link = ptr.link;
+		ptr.link = newNode;
+		return value +" is added.";
 	}
-	
-	void insertEnd(SinglyLinkedList start, int value) {
+
+	String insertEnd(SinglyLinkedList start, int value) {
 		SinglyLinkedList newNode = new SinglyLinkedList(value);
 		SinglyLinkedList ptr = start;
-		while(ptr.link!=null) {
-			ptr=ptr.link;
+		while (ptr.link != null) {
+			ptr = ptr.link;
 		}
-		ptr.link=newNode;
+		ptr.link = newNode;
+		return value+" is added.";
 	}
-	
-	void delete(SinglyLinkedList start, int index) {
+
+	String delete(SinglyLinkedList start, int index) {
 		SinglyLinkedList ptr = start;
-		int count=1;
-		while(count<index) {
-			ptr=ptr.link;
+		int count = 1;
+		while (count < index) {
+			ptr = ptr.link;
 			count++;
 		}
 		SinglyLinkedList ptr1 = ptr.link;
-		ptr.link=ptr.link.link;
-		ptr1.link=null;
+		ptr.link = ptr.link.link;
+		int temp = ptr1.data;
+		ptr1.link = null;
+		return "Node with Value "+temp+" is deleted.";
 	}
-	
+
+	// Utility method to generate a string representation of the linked list
+	// elements
+	String getElementsAsString(SinglyLinkedList list) {
+		StringBuilder sb = new StringBuilder();
+		SinglyLinkedList current = list.link; // Start from the first actual node after the dummy head
+
+		while (current != null) {
+			sb.append(current.data).append(" -> ");
+			current = current.link;
+		}
+		sb.append("null"); // End of list marker
+		return sb.toString();
+	}
+
 }
