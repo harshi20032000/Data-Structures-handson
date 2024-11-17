@@ -105,6 +105,34 @@ public class Sorting {
 		int[] right = mergeSort(Arrays.copyOfRange(array,array.length/2, array.length));
 		return merge(left, right);
 	}
+	
+	static void swap(int[] array, int i, int j) {
+		int temp = array[i];
+		array[i]=array[j];
+		array[j]=temp;
+	}
+	
+	static int pivot(int[] array, int pivotIndex, int endIndex) {
+		int swapIndex = pivotIndex;
+		for(int i=pivotIndex+1; i<=endIndex; i++) {
+			if(array[i]<array[pivotIndex]) {
+				swapIndex++;
+				swap(array, swapIndex, i);
+			}
+		}
+		swap(array, pivotIndex, swapIndex);
+		return swapIndex;
+	}
+	
+	static void quickSort(int[] array, int left, int right) {
+		if(left<right) {
+			 int pivotIndex = pivot(array, left, right);
+			 quickSort(array, left, pivotIndex-1);
+			 quickSort(array, pivotIndex+1, right);
+		}
+	}
+	
+	
 
 	public static void main(String[] args) {
 		int[] array = { 7, 9, 8, 0, 1, 4 };
@@ -126,5 +154,13 @@ public class Sorting {
 		int[] array5 = {1, 3, 5, 7, 9, 11, 13, 15, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
 		System.out.println("Testing merge sort");
 		System.out.println(Arrays.toString(mergeSort(array5)));
+		
+		System.out.println("Testing pivot function");
+		int[] quickSortArray = {4, 6, 1, 7, 3, 2, 5};
+		int returnedIndex = pivot(quickSortArray, 0, quickSortArray.length-1);
+		System.out.println("returned index: "+ returnedIndex);
+		System.out.println("modified array : "+Arrays.toString(quickSortArray));
+		quickSort(quickSortArray, 0, quickSortArray.length-1);
+		System.out.println("After quick sort : "+Arrays.toString(quickSortArray));
 	}
 }
