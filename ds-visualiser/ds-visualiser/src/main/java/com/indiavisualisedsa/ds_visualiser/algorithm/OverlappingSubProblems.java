@@ -1,12 +1,18 @@
 package com.indiavisualisedsa.ds_visualiser.algorithm;
 
-public class OverlappingSubProblem {
+public class OverlappingSubProblems {
 
+	static Integer[] memo = new Integer[100];
+	
 	static int fibonaci(int n) {
-		int counter = 0;
+		if(memo[n]!=null) {
+			return memo[n];
+		}
+		
 		if(n==0 || n==1)
 			return n;
-		return fibonaci(n-1)+ fibonaci(n-2);
+		memo[n]=fibonaci(n-1)+ fibonaci(n-2);
+		return memo[n];
 	}
 	
 	public static void main(String[] args) {

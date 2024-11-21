@@ -1,0 +1,14 @@
+1.Binary tree - It can only point to two nodes.
+2.Full Tree - Every nodes either point to two or zero nodes.
+3.Perfect tree - At any level all nodes are full.
+4.Complete tree - filling the tree from left to right not 
+necessarily complete.
+5.Two child node having same parents are siblings.
+6.Node having no children is called leaf.
+7.Binary Search Tree - value smaller than parent node is placed on the
+left and vice versa.
+8.No of nodes at a level is 2 to power n minus 1 where n is the level.
+9.to insert or search a node the complexity is (O(log(n)))(divide and rule).
+10.If a tree never forks it is essentially a linked list. So actually for 
+lookup, insert and move it is (O(n)).
+
