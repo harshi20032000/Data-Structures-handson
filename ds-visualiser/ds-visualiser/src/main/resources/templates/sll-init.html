@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Initialize Single LinkedList</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+		<!-- Homepage Button -->
+        <div class="text-center mt-3">
+            <a href="http://localhost:8080/" class="btn btn-primary">Go to Homepage</a>
+        </div>
+        <h2 class="text-center mt-4">Initialize Single LinkedList</h2>
+        <form action="/sll/initialize" method="post" class="form-group mt-5 text-center">
+            <label for="size">Enter first data of Single LinkedList:</label>
+            <input type="number" id="data" name="data" class="form-control w-25 mx-auto" placeholder="Single LinkedList Data" min="1" required>
+            <button type="submit" class="btn btn-primary mt-3">Initialize Single LinkedList</button>
+        </form>
+    </div>
+</body>
+</html>

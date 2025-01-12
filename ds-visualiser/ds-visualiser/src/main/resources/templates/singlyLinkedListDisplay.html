@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Single LinkedList Visualization</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .sll-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sll-display {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .sll-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .sll-node {
+            width: 80px;
+            height: 30px;
+            background-color: #6c757d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .sll-node::after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            font-size: 1.2em;
+            color: black;
+        }
+
+        .sll-node:last-child::after {
+            content: "";
+        }
+
+        .operation-form {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .operation-form input {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Homepage Button -->
+        <div class="text-center mt-3">
+            <a href="http://localhost:8080/" class="btn btn-primary">Go to Homepage</a>
+        </div>
+        <h2 class="text-center">Single LinkedList Visualization</h2>
+
+        <!-- Linked List Display -->
+        <div class="sll-wrapper">
+            <h3>Current Linked List:</h3>
+            <div class="sll-display">
+                <div class="sll-container">
+                    <span th:text="${elements}"></span>
+                </div>
+            </div>
+
+            <!-- Operation Forms -->
+            <div class="operation-form">
+                <!-- Insert at Beginning -->
+                <form th:action="@{/sll/insertBeg}" method="post">
+                    <input type="number" name="value" placeholder="Value to Add" required />
+                    <button type="submit" class="btn btn-success">Insert at Beginning</button>
+                </form>
+
+                <!-- Insert at Middle -->
+                <form th:action="@{/sll/insertMid}" method="post">
+                    <input type="number" name="value" placeholder="Value to Add" required />
+                    <input type="number" name="position" placeholder="Position" required />
+                    <button type="submit" class="btn btn-warning">Insert at Middle</button>
+                </form>
+
+                <!-- Insert at End -->
+                <form th:action="@{/sll/insertEnd}" method="post">
+                    <input type="number" name="value" placeholder="Value to Add" required />
+                    <button type="submit" class="btn btn-info">Insert at End</button>
+                </form>
+
+                <!-- Delete by Position -->
+                <form th:action="@{/sll/delete}" method="post">
+                    <input type="number" name="position" placeholder="Position to Delete" required />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

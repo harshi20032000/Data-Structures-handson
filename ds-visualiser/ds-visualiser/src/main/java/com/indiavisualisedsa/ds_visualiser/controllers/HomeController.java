@@ -14,7 +14,8 @@ public class HomeController {
 		Map<String, String> dataStructures = Map.of("Stack", "/stack/initializePage",
 													"Queue", "/queue/initializePage",
 													"CircularQueue", "/circularqueue/initializePage",
-													"Deque", "/deque/initializePage"
+													"Deque", "/deque/initializePage",
+													"SingleLinkedList", "/sll/initializePage"
 		);
 		model.addAttribute("dataStructures", dataStructures);
 		return "index";

@@ -1,52 +1,69 @@
 package com.indiavisualisedsa.ds_visualiser.models;
 
 public class SinglyLinkedList {
+	
+	class Node{
+		int data;
+		Node link;
 
-	int data;
-	SinglyLinkedList link;
+		Node(int item) {
+			data = item;
+			link = null;
+		}
+		
+		Node(){
+			data=0;
+			link=null;
+		}
+	}
+	
+	Node head;
 
-	SinglyLinkedList(int item) {
-		data = item;
-		link = null;
+	
+	
+	public SinglyLinkedList(int x) {
+		head = new Node(x);
+	}
+	
+	
+
+	String insertBeg(int x) {
+		Node newNode = new Node(x);
+		newNode.link = this.head;
+		return x +" is added.";
 	}
 
-	String insertBeg(SinglyLinkedList start, int value) {
-		SinglyLinkedList newNode = new SinglyLinkedList(value);
-		newNode.link = start;
-		return value +" is added.";
-	}
-
-	String insertMid(SinglyLinkedList start, int value, int index) {
-		SinglyLinkedList newNode = new SinglyLinkedList(value);
-		SinglyLinkedList ptr = start;
+	String insertMid(int x, int p) {
+		Node newNode = new Node(x);
+		Node ptr = this.head;
 		int count = 1;
-		while (count < index) {
+		while (count < p) {
 			ptr = ptr.link;
 			count++;
 		}
 		newNode.link = ptr.link;
 		ptr.link = newNode;
-		return value +" is added.";
+		return x +" is added.";
 	}
 
-	String insertEnd(SinglyLinkedList start, int value) {
-		SinglyLinkedList newNode = new SinglyLinkedList(value);
-		SinglyLinkedList ptr = start;
+	String insertEnd(int x) {
+		Node newNode = new Node(x);
+		Node ptr = this.head;
 		while (ptr.link != null) {
 			ptr = ptr.link;
 		}
 		ptr.link = newNode;
-		return value+" is added.";
+		return x+" is added.";
 	}
 
-	String delete(SinglyLinkedList start, int index) {
-		SinglyLinkedList ptr = start;
+	String delete(int p) {
+		Node ptr = this.head;
 		int count = 1;
-		while (count < index) {
+		while (count < p) {
 			ptr = ptr.link;
 			count++;
 		}
-		SinglyLinkedList ptr1 = ptr.link;
+		Node ptr1 = ptr.link;
 		ptr.link = ptr.link.link;
 		int temp = ptr1.data;
 		ptr1.link = null;
@@ -55,9 +72,9 @@ public class SinglyLinkedList {
 
 	// Utility method to generate a string representation of the linked list
 	// elements
-	String getElementsAsString(SinglyLinkedList list) {
+	public String getElementsAsString() {
 		StringBuilder sb = new StringBuilder();
-		SinglyLinkedList current = list.link; // Start from the first actual node after the dummy head
+		Node current = this.head; // Start from the first actual node after the dummy head
 
 		while (current != null) {
 			sb.append(current.data).append(" -> ");
