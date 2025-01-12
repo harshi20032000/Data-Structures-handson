@@ -27,13 +27,18 @@ public class SinglyLinkedList {
 	
 	
 
-	String insertBeg(int x) {
+	public String insertBeg(int x) {
 		Node newNode = new Node(x);
 		newNode.link = this.head;
+		head=newNode;
 		return x +" is added.";
 	}
 
-	String insertMid(int x, int p) {
+	public String insertMid(int x, int p) {
+		if(p==0) {
+			insertBeg(x);
+			return x +" is added.";
+		}
 		Node newNode = new Node(x);
 		Node ptr = this.head;
 		int count = 1;
@@ -46,7 +51,7 @@ public class SinglyLinkedList {
 		return x +" is added.";
 	}
 
-	String insertEnd(int x) {
+	public String insertEnd(int x) {
 		Node newNode = new Node(x);
 		Node ptr = this.head;
 		while (ptr.link != null) {
@@ -56,7 +61,13 @@ public class SinglyLinkedList {
 		return x+" is added.";
 	}
 
-	String delete(int p) {
+	public String delete(int p) {
+		if(p==0) {
+			Node temp=head;
+			head = head.link;
+			temp.link=null;
+			return "Node at position "+p+" is deleted.";
+		}
 		Node ptr = this.head;
 		int count = 1;
 		while (count < p) {
@@ -65,9 +76,8 @@ public class SinglyLinkedList {
 		}
 		Node ptr1 = ptr.link;
 		ptr.link = ptr.link.link;
-		int temp = ptr1.data;
 		ptr1.link = null;
-		return "Node with Value "+temp+" is deleted.";
+		return "Node at position "+p+" is deleted.";
 	}
 
 	// Utility method to generate a string representation of the linked list

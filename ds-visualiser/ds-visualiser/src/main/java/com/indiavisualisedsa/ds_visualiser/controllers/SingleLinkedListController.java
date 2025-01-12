@@ -35,4 +35,38 @@ public class SingleLinkedListController {
 		return "singlyLinkedListDisplay";
 	}
 	
+	@PostMapping("/insertBeg")
+	public String insertBeg(@RequestParam("value") Integer value,@ModelAttribute("singlyLinkedList") SinglyLinkedList singlyLinkedList, Model model) {
+		String message = singlyLinkedList.insertBeg(value);
+		String elements = singlyLinkedList != null ? singlyLinkedList.getElementsAsString() : "";
+		model.addAttribute("elements", elements);
+		model.addAttribute("message", message);
+		return "singlyLinkedListDisplay";
+	}
+	
+	@PostMapping("/insertMid")
+	public String insertMid(@RequestParam("value") Integer value,@RequestParam("position") Integer position,@ModelAttribute("singlyLinkedList") SinglyLinkedList singlyLinkedList, Model model) {
+		String message = singlyLinkedList.insertMid(value, position);
+		String elements = singlyLinkedList != null ? singlyLinkedList.getElementsAsString() : "";
+		model.addAttribute("elements", elements);
+		model.addAttribute("message", message);
+		return "singlyLinkedListDisplay";
+	}
+	
+	@PostMapping("/insertEnd")
+	public String insertEnd(@RequestParam("value") Integer value,@ModelAttribute("singlyLinkedList") SinglyLinkedList singlyLinkedList, Model model) {
+		String message = singlyLinkedList.insertEnd(value);
+		String elements = singlyLinkedList != null ? singlyLinkedList.getElementsAsString() : "";
+		model.addAttribute("elements", elements);
+		model.addAttribute("message", message);
+		return "singlyLinkedListDisplay";
+	}
+	@PostMapping("/delete")
+	public String delete(@RequestParam("position") Integer position,@ModelAttribute("singlyLinkedList") SinglyLinkedList singlyLinkedList, Model model) {
+		String message = singlyLinkedList.delete(position);
+		String elements = singlyLinkedList != null ? singlyLinkedList.getElementsAsString() : "";
+		model.addAttribute("elements", elements);
+		model.addAttribute("message", message);
+		return "singlyLinkedListDisplay";
+	}
 }

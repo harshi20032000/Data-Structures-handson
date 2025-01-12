@@ -80,6 +80,10 @@
                     <span th:text="${elements}"></span>
                 </div>
             </div>
+            <!-- Message Display -->
+		<div th:if="${message}" class="alert alert-info text-center mt-3">
+			<p th:text="${message}"></p>
+		</div>
 
             <!-- Operation Forms -->
             <div class="operation-form">
