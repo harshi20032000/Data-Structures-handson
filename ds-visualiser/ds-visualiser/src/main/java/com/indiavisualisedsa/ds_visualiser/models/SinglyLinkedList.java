@@ -20,7 +20,7 @@ public class SinglyLinkedList {
 	Node head;
 
 	
-	
+	//code to initialise
 	public SinglyLinkedList(int x) {
 		head = new Node(x);
 	}
@@ -84,11 +84,11 @@ public class SinglyLinkedList {
 	// elements
 	public String getElementsAsString() {
 		StringBuilder sb = new StringBuilder();
-		Node current = this.head; // Start from the first actual node after the dummy head
+		Node ptr = this.head; // Start from the first actual node after the dummy head
 
-		while (current != null) {
-			sb.append(current.data).append(" -> ");
-			current = current.link;
+		while (ptr != null) {
+			sb.append(ptr.data).append(" -> ");
+			ptr = ptr.link;
 		}
 		sb.append("null"); // End of list marker
 		return sb.toString();
