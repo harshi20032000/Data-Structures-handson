@@ -1,4 +1,4 @@
-package com.indiavisualisedsa.ds_visualiser.datastructures;
+package com.indiavisualisedsa.ds_visualiser.datastructures.linkedlist;
 
 
 public class LinkedList {
@@ -24,11 +24,13 @@ public class LinkedList {
     }
 
     public void printList() {
+    	System.out.println("------");
         Node temp = head;
         while (temp != null) {
-            System.out.println(temp.value);
+            System.out.print(temp.value+" ->");
             temp = temp.next;
         }
+        System.out.println("null\n------");
     }
 
     public void getHead() {
@@ -168,33 +170,5 @@ public class LinkedList {
             temp = after;
         }
     }
-
-    public static void main(String[] args) {
-
-        LinkedList myLinkedList = new LinkedList(4);
-
-//        myLinkedList.getHead();
-//        myLinkedList.getTail();
-//        myLinkedList.getLength();
-//
-//        System.out.println("\nLinked List:");
-//        myLinkedList.printList();
-
-        System.out.println("Hello World");
-
-        /*
-            EXPECTED OUTPUT:
-            ----------------
-            Head: 4
-            Tail: 4
-            Length: 1
-
-            Linked List:
-            4
-
-        */
-
-    }
-
 }
 
