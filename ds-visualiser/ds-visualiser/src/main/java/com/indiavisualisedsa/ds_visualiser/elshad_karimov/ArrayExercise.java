@@ -171,15 +171,15 @@ public class ArrayExercise {
 			reverse(matrix[i]);
 		}
 	}
-	
+
 	public static void makeColumnReverseMatrix(int[][] matrix) {
-		for (int i = 0; i < matrix.length/2; i++) {
-			swap(matrix[i], matrix[matrix.length -i-1]);
+		for (int i = 0; i < matrix.length / 2; i++) {
+			swap(matrix[i], matrix[matrix.length - i - 1]);
 		}
 	}
 
 	private static void swap(int[] is, int[] is2) {
-		
+
 		for (int i = 0; i < is.length; i++) {
 			int temp = is[i];
 			is[i] = is2[i];
@@ -188,7 +188,7 @@ public class ArrayExercise {
 	}
 
 	private static void reverse(int[] is) {
-		//using two pointer technique
+		// using two pointer technique
 		for (int i = 0, j = is.length - 1; i < j; i++, j--) {
 			int temp = is[i];
 			is[i] = is[j];
@@ -213,6 +213,25 @@ public class ArrayExercise {
 			System.out.println();
 		}
 		System.out.println();
+	}
+
+	public static void rotateByK(int[] arr, int k) {
+		int n = arr.length;
+		k = k % n; // Handle cases where k > n
+
+		reverse(arr, 0, n - 1); // Reverse entire array
+		reverse(arr, 0, k - 1); // Reverse first k elements
+		reverse(arr, k, n - 1);
+	}
+
+	private static void reverse(int[] arr, int start, int end) {
+		while (start < end) {
+			int temp = arr[start];
+			arr[start] = arr[end];
+			arr[end] = temp;
+			start++;
+			end--;
+		}
 	}
 
 	public static void main(String[] args) {
