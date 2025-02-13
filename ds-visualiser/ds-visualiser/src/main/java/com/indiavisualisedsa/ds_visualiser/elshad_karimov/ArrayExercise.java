@@ -234,10 +234,25 @@ public class ArrayExercise {
 		}
 	}
 
+	public static int maxArea(int[] height) {
+		int i = 0;
+		int j = height.length - 1;
+		int maxA = 0;
+		while (i < j) {
+			maxA = Math.max(Math.min(height[i], height[j]) * (j - i), maxA);
+			if (height[i] > height[j])
+				j--;
+			else
+				i++;
+		}
+
+		return maxA;
+	}
+
 	public static void main(String[] args) {
-		int[][] test2DArray = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-		makeColumnReverseMatrix(test2DArray);
-		print2DArray(test2DArray);
+		int[] test2DArray = { 1, 1 };
+		System.out.println(maxArea(test2DArray));
+
 	}
 
 }
