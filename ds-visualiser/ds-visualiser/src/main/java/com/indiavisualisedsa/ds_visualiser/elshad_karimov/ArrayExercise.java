@@ -1,6 +1,8 @@
 package com.indiavisualisedsa.ds_visualiser.elshad_karimov;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArrayExercise {
 
@@ -249,10 +251,60 @@ public class ArrayExercise {
 		return maxA;
 	}
 
-	public static void main(String[] args) {
-		int[] test2DArray = { 1, 1 };
-		System.out.println(maxArea(test2DArray));
+	public static List<List<Integer>> threeSum(int[] nums) {
 
+		List<List<Integer>> result = new ArrayList();
+		Arrays.sort(nums);
+		for (int i = 0; i < nums.length - 2; i++) {
+			if (i > 0 && nums[i - 1] == nums[i])
+				continue;
+			int left = i + 1;
+			int right = nums.length - 1;
+			while (left < right && left < nums.length && right < nums.length) {
+				int sum = nums[i] + nums[left] + nums[right];
+				if (sum == 0) {
+					result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+					while (left < right && nums[left] == nums[left + 1])
+						left++;
+					while (left < right && nums[right] == nums[right - 1])
+						right--;
+					left++;
+					right--;
+				} else if (sum < 0)
+					left++;
+				else
+					right--;
+
+			}
+		}
+		return result;
+	}
+
+	public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1; // Pointer for nums1 (excluding extra space)
+        int j = n - 1; // Pointer for nums2
+        int k = m + n - 1; // Pointer for merged array (starting from the end)
+
+        // Merge from the end
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k--] = nums1[i--];
+            } else {
+                nums1[k--] = nums2[j--];
+            }
+        }
+
+        // If nums2 has remaining elements, copy them
+        while (j >= 0) {
+            nums1[k--] = nums2[j--];
+        }
+
+	}
+
+	public static void main(String[] args) {
+		int[] test2DArray = { 3, 0, -2, -1, 1, 2 };
+		List<List<Integer>> threeSum = threeSum(test2DArray);
+		System.out.println(threeSum.toString());
 	}
 
 }
