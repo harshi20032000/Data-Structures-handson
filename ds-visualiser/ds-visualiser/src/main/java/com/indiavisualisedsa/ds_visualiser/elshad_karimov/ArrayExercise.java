@@ -281,30 +281,39 @@ public class ArrayExercise {
 	}
 
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i = m - 1; // Pointer for nums1 (excluding extra space)
-        int j = n - 1; // Pointer for nums2
-        int k = m + n - 1; // Pointer for merged array (starting from the end)
+		int i = m - 1; // Pointer for nums1 (excluding extra space)
+		int j = n - 1; // Pointer for nums2
+		int k = m + n - 1; // Pointer for merged array (starting from the end)
 
-        // Merge from the end
-        while (i >= 0 && j >= 0) {
-            if (nums1[i] > nums2[j]) {
-                nums1[k--] = nums1[i--];
-            } else {
-                nums1[k--] = nums2[j--];
-            }
-        }
+		// Merge from the end
+		while (i >= 0 && j >= 0) {
+			if (nums1[i] > nums2[j]) {
+				nums1[k--] = nums1[i--];
+			} else {
+				nums1[k--] = nums2[j--];
+			}
+		}
 
-        // If nums2 has remaining elements, copy them
-        while (j >= 0) {
-            nums1[k--] = nums2[j--];
-        }
+		// If nums2 has remaining elements, copy them
+		while (j >= 0) {
+			nums1[k--] = nums2[j--];
+		}
 
 	}
 
+	public static int removeElement(int[] nums, int val) {int k = 0; // Pointer for placement of non-val elements
+
+    for (int i = 0; i < nums.length; i++) {
+        if (nums[i] != val) {
+            nums[k++] = nums[i]; // Move non-val element to front
+        }
+    }
+    return k;}
+
 	public static void main(String[] args) {
-		int[] test2DArray = { 3, 0, -2, -1, 1, 2 };
-		List<List<Integer>> threeSum = threeSum(test2DArray);
-		System.out.println(threeSum.toString());
+		int[] test2DArray = { 3,-2, -2, 0, -2, -1, 1, 2 };
+		removeElement(test2DArray, -2);
+		printArray(test2DArray);
 	}
 
 }
