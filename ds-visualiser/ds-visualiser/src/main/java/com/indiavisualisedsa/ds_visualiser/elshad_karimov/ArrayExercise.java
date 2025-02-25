@@ -1,6 +1,5 @@
 package com.indiavisualisedsa.ds_visualiser.elshad_karimov;
 
-import java.awt.RenderingHints.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -369,51 +368,64 @@ public class ArrayExercise {
 			elementCount.put(nums[i], elementCount.getOrDefault(nums[i], 0) + 1);
 		}
 		int maxKey = nums[0];
-		for(Entry<Integer, Integer> eachKey : elementCount.entrySet()) {
-			if(eachKey.getValue()>elementCount.get(maxKey))
-				maxKey=eachKey.getKey();
+		for (Entry<Integer, Integer> eachKey : elementCount.entrySet()) {
+			if (eachKey.getValue() > elementCount.get(maxKey))
+				maxKey = eachKey.getKey();
 		}
 		return maxKey;
 	}
-	
+
 	public static int majorityElementUsingBayerMooreAlgorithm(int[] nums) {
-		int candidate=nums[0];
-		int count =0;
+		int candidate = nums[0];
+		int count = 0;
 		for (int i = 0; i < nums.length; i++) {
-			if(count==0)
-				candidate=nums[i];
-			count = (nums[i]>candidate)?count+1:count-1;
-			
+			if (count == 0)
+				candidate = nums[i];
+			count = (nums[i] > candidate) ? count + 1 : count - 1;
+
 		}
 		return candidate;
 	}
-	
+
 	public static void rotateUsingAdditionalSpace(int[] nums, int k) {
 		int[] temp = new int[k];
-        int l = nums.length;
-        for(int i=0; i<k; i++){
-        	temp[i]=nums[l-k+i];
-        }
-        for(int i=l-1, j=l-k-1; j>=0; i--, j--){
-        	nums[i]=nums[j];
-        }
-        for(int i=0; i<k; i++){
-        	nums[i]=temp[i];
-        } 
-    }
-	
+		int l = nums.length;
+		for (int i = 0; i < k; i++) {
+			temp[i] = nums[l - k + i];
+		}
+		for (int i = l - 1, j = l - k - 1; j >= 0; i--, j--) {
+			nums[i] = nums[j];
+		}
+		for (int i = 0; i < k; i++) {
+			nums[i] = temp[i];
+		}
+	}
+
 	public static void rotateUsingreverse(int[] nums, int k) {
-		int l=nums.length;
-		reverse(nums, 0, l-1);
-		reverse(nums, 0, k-1);
-		reverse(nums, k, l-1);
-    }
+		int l = nums.length;
+		reverse(nums, 0, l - 1);
+		reverse(nums, 0, k - 1);
+		reverse(nums, k, l - 1);
+	}
+
+	public int maxProfitNotSortedBruteForce(int[] prices) {
+		int l = prices.length;
+		int diff = 0;
+		for (int i = 0; i < l; i++) {
+			for (int j = i; j < l; j++) {
+				if ((prices[j] - prices[i]) > diff) {
+					diff = prices[j] - prices[i];
+				}
+			}
+		}
+		return diff;
+	}
 
 	public static void main(String[] args) {
 		int[] test2DArray = { 1, 2, 3, 4, 5, 6, 7 };
 		rotateUsingreverse(test2DArray, 3);
 		printArray(test2DArray);
-		
+
 	}
 
 }
