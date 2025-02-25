@@ -1,8 +1,12 @@
 package com.indiavisualisedsa.ds_visualiser.elshad_karimov;
 
+import java.awt.RenderingHints.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class ArrayExercise {
 
@@ -301,19 +305,115 @@ public class ArrayExercise {
 
 	}
 
-	public static int removeElement(int[] nums, int val) {int k = 0; // Pointer for placement of non-val elements
+	public static int removeElement(int[] nums, int val) {
+		int k = 0; // Pointer for placement of non-val elements
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != val) {
+				nums[k++] = nums[i]; // Move non-val element to front
+			}
+		}
+		return k;
+	}
 
-    for (int i = 0; i < nums.length; i++) {
-        if (nums[i] != val) {
-            nums[k++] = nums[i]; // Move non-val element to front
+	public static int removeDuplicateElement(int[] nums) {
+		int k = 0;
+		int l = nums.length;
+		for (int i = 0; i < nums.length; i++) {
+			int j = 0;
+			while (i != j) {
+				if (nums[i] == nums[j]) {
+					int temp = nums[j];
+					nums[j] = nums[l - k];
+					nums[l - k] = temp;
+				} else
+					k++;
+			}
+		}
+		return k;
+	}
+
+	public static int removeDuplicatesFromSortedArrays(int[] nums) {
+
+		// pointer to track unique elements
+		int i = 0;
+		// pointer to track all elements
+		int j = 1;
+		for (j = 1; j < nums.length; j++) {
+			if (nums[i] != nums[j]) {
+				i++;
+				nums[i] = nums[j];
+			}
+
+		}
+		return i + 1;
+	}
+
+	public static int removeDuplicatesFromSortedArraysTwoElementsAllowed(int[] nums) {
+
+		// pointer to track unique elements
+		int i = 0;
+		// pointer to track all elements
+		for (int j = 1; j < nums.length; j++) {
+			if (nums[i] != nums[j]) {
+				i += 2;
+				nums[i] = nums[j];
+			}
+
+		}
+		return i + 1;
+	}
+
+	public static int majorityElement(int[] nums) {
+		Map<Integer, Integer> elementCount = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			elementCount.put(nums[i], elementCount.getOrDefault(nums[i], 0) + 1);
+		}
+		int maxKey = nums[0];
+		for(Entry<Integer, Integer> eachKey : elementCount.entrySet()) {
+			if(eachKey.getValue()>elementCount.get(maxKey))
+				maxKey=eachKey.getKey();
+		}
+		return maxKey;
+	}
+	
+	public static int majorityElementUsingBayerMooreAlgorithm(int[] nums) {
+		int candidate=nums[0];
+		int count =0;
+		for (int i = 0; i < nums.length; i++) {
+			if(count==0)
+				candidate=nums[i];
+			count = (nums[i]>candidate)?count+1:count-1;
+			
+		}
+		return candidate;
+	}
+	
+	public static void rotateUsingAdditionalSpace(int[] nums, int k) {
+		int[] temp = new int[k];
+        int l = nums.length;
+        for(int i=0; i<k; i++){
+        	temp[i]=nums[l-k+i];
         }
+        for(int i=l-1, j=l-k-1; j>=0; i--, j--){
+        	nums[i]=nums[j];
+        }
+        for(int i=0; i<k; i++){
+        	nums[i]=temp[i];
+        } 
     }
-    return k;}
+	
+	public static void rotateUsingreverse(int[] nums, int k) {
+		int l=nums.length;
+		reverse(nums, 0, l-1);
+		reverse(nums, 0, k-1);
+		reverse(nums, k, l-1);
+    }
 
 	public static void main(String[] args) {
-		int[] test2DArray = { 3,-2, -2, 0, -2, -1, 1, 2 };
-		removeElement(test2DArray, -2);
+		int[] test2DArray = { 1, 2, 3, 4, 5, 6, 7 };
+		rotateUsingreverse(test2DArray, 3);
 		printArray(test2DArray);
+		
 	}
 
 }
