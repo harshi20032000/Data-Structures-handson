@@ -421,10 +421,46 @@ public class ArrayExercise {
 		return diff;
 	}
 
+//	public int maxSubArray(int[] nums) {
+//
+//	}
+
+	public static boolean isPalindrome(int x) {
+		int abs = Math.abs(x);
+		String string = Integer.toString(abs);
+		int length = string.length();
+		for (int i = 0; i < length / 2; i++) {
+			if (string.charAt(i) != string.charAt(length - i-1))
+				return false;
+		}
+		return true;
+	}
+	
+	public static boolean isPalindromeBetterApproach(int x) {
+		if(x<0 || x%10==0 && x!=0) return false;
+		int reversedNo=0;
+		while(reversedNo<x) {
+			reversedNo=reversedNo*10+x%10;
+			x/=10;
+		}
+		return reversedNo==x || reversedNo/10==x;
+	}
+	
+	public static boolean isPalindromeUsingUsingShiftOperator(int x) {
+		if(x<0 || x%10==0 && x!=0) return false;
+		int reversedNo=0;
+		while(reversedNo<x) {
+			reversedNo=reversedNo<<3+reversedNo<<1+x%10;
+			x/=10;
+		}
+		return reversedNo==x || reversedNo/10==x;
+	}
+
 	public static void main(String[] args) {
-		int[] test2DArray = { 1, 2, 3, 4, 5, 6, 7 };
-		rotateUsingreverse(test2DArray, 3);
-		printArray(test2DArray);
+//		int[] test2DArray = { 1, 2, 3, 4, 5, 6, 7 };
+//		rotateUsingreverse(test2DArray, 3);
+//		printArray(test2DArray);
+		System.out.println(isPalindromeUsingUsingShiftOperator(121));
 
 	}
 
