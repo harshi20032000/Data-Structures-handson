@@ -205,7 +205,7 @@ public class ArrayExercise {
 	public static void printArray(int[] array) {
 		System.out.println("The array values are - ");
 		for (int e : array)
-			System.out.print(e + " ");
+			System.out.print(e + ", ");
 		System.out.println();
 	}
 
@@ -430,37 +430,54 @@ public class ArrayExercise {
 		String string = Integer.toString(abs);
 		int length = string.length();
 		for (int i = 0; i < length / 2; i++) {
-			if (string.charAt(i) != string.charAt(length - i-1))
+			if (string.charAt(i) != string.charAt(length - i - 1))
 				return false;
 		}
 		return true;
 	}
-	
+
 	public static boolean isPalindromeBetterApproach(int x) {
-		if(x<0 || x%10==0 && x!=0) return false;
-		int reversedNo=0;
-		while(reversedNo<x) {
-			reversedNo=reversedNo*10+x%10;
-			x/=10;
+		if (x < 0 || x % 10 == 0 && x != 0)
+			return false;
+		int reversedNo = 0;
+		while (reversedNo < x) {
+			reversedNo = reversedNo * 10 + x % 10;
+			x /= 10;
 		}
-		return reversedNo==x || reversedNo/10==x;
+		return reversedNo == x || reversedNo / 10 == x;
 	}
-	
+
 	public static boolean isPalindromeUsingUsingShiftOperator(int x) {
-		if(x<0 || x%10==0 && x!=0) return false;
-		int reversedNo=0;
-		while(reversedNo<x) {
-			reversedNo=reversedNo<<3+reversedNo<<1+x%10;
-			x/=10;
+		if (x < 0 || x % 10 == 0 && x != 0)
+			return false;
+		int reversedNo = 0;
+		while (reversedNo < x) {
+			reversedNo = reversedNo << 3 + reversedNo << 1 + x % 10;
+			x /= 10;
 		}
-		return reversedNo==x || reversedNo/10==x;
+		return reversedNo == x || reversedNo / 10 == x;
+	}
+
+	public static int[] plusOne(int[] digits) {
+		int l = digits.length;
+	    
+	    for (int i = l - 1; i >= 0; i--) {
+	        if (digits[i] < 9) {
+	            digits[i]++;  // Simply increment if it's not 9
+	            return digits;
+	        }
+	        digits[i] = 0;  // Set current digit to 0 and carry over
+	    }
+
+	    // If we exit the loop, it means we had a carry from the first digit (e.g., 999 → 1000)
+	    int[] result = new int[l + 1];
+	    result[0] = 1; // All other elements remain 0 by default
+	    return result;
 	}
 
 	public static void main(String[] args) {
-//		int[] test2DArray = { 1, 2, 3, 4, 5, 6, 7 };
-//		rotateUsingreverse(test2DArray, 3);
-//		printArray(test2DArray);
-		System.out.println(isPalindromeUsingUsingShiftOperator(121));
+		int[] test2DArray = {9};
+		printArray(plusOne(test2DArray));
 
 	}
 
